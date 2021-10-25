@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 // const salesRoutes = require("./routes/sales");
 const productsRoutes = require("./routes/products");
@@ -18,9 +19,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // connection to database
-const connectionString =
-  "mongodb+srv://mateo-cr:V5I8toOBGEoutZ2a@mongodb-session.rct8e.mongodb.net/kedama-project?retryWrites=true&w=majority";
-mongoose.connect(connectionString).then(() => {
+
+mongoose.connect(process.env.MONGODBCONNECT).then(() => {
   console.log("Connected to MongoDB!");
 });
 
